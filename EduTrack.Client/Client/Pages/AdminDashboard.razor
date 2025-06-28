@@ -1,0 +1,43 @@
+﻿@page "/admin-dashboard"
+@inject NavigationManager Navigation
+
+<PageTitle>İdare Paneli - Ana Sayfa</PageTitle>
+<link href="css/layout.css" rel="stylesheet" />
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h3>İdare Paneli</h3>
+            
+        </div>
+
+        <div class="d-grid gap-2">
+            
+
+            <button class="btn btn-outline-primary w-100 mb-2" @onclick="@(() => Navigation.NavigateTo("/admin-classes"))">
+                Sınıf Yönetimi
+            </button>
+            <button class="btn btn-outline-primary w-100 mb-2" @onclick="@(() => Navigation.NavigateTo("/admin-assign-student"))">
+                Sınıf-Öğrenci Yönetimi
+            </button>
+
+            <button class="btn btn-outline-primary w-100 mb-2" @onclick="@(() => Navigation.NavigateTo("/admin-lessons"))">
+                Ders Yönetimi
+            </button>
+
+            <button class="btn btn-outline-primary w-100 mb-2" @onclick="@(() => Navigation.NavigateTo("/admin-teachers"))">
+                Öğretmen Listesi
+            </button>
+            <button class="btn btn-outline-primary w-100 mb-2" @onclick="@(() => Navigation.NavigateTo("/admin-students"))">
+                Öğrenci Listesi
+            </button>
+            <button class="btn btn-outline-primary w-100 mb-2" @onclick="@(() => Navigation.NavigateTo("/admin-class-notes"))">
+                Not Listeleri 
+            </button>
+
+            
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+
+.vs/
+*.user
+*.suo
+
+
+bin/
+obj/
+
+
+*.log
+*.tmp
+*.vscode/
+
+
+*.db
+*.bak

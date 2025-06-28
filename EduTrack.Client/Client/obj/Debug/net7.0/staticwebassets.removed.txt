@@ -1,0 +1,2 @@
+D:\EduTrack-1\EduTrack.Client\Client\wwwroot\css\app.css
+D:\EduTrack-1\EduTrack.Client\Client\wwwroot\favicon.ico

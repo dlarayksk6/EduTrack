@@ -1,0 +1,182 @@
+﻿@page "/login"
+@using System.ComponentModel.DataAnnotations
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject ILogger<Login> Logger
+
+<PageTitle>Giriş Yap - EduTrack</PageTitle>
+<link href="css/layout.css" rel="stylesheet" />
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h3>Giriş Yap</h3>
+            <p>Eğitim takip sistemine erişmek için hesabınıza giriş yapın</p>
+        </div>
+
+        <EditForm Model="@LoginData" OnValidSubmit="@HandleLogin" class="auth-form">
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+
+           
+            <div class="form-group">
+                <label for="tcNo">TC Kimlik No</label>
+                <InputText id="tcNo" @bind-Value="LoginData.TcNo"
+                           class="form-control" placeholder="11 haneli giriniz" />
+                <ValidationMessage For="@(() => LoginData.TcNo)" />
+            </div>
+
+
+            <div class="form-group">
+                <label for="password">Şifre</label>
+                <InputText id="password" type="password" @bind-Value="LoginData.Password"
+                           class="form-control" />
+                <ValidationMessage For="@(() => LoginData.Password)" />
+            </div>
+
+            <div class="form-group">
+                <label for="role">Rol Seçiniz</label>
+                <InputSelect id="role" @bind-Value="LoginData.Role" class="form-control">
+                    <option value="">Seçiniz...</option>
+                    <option value="Student">Öğrenci</option>
+                    <option value="Teacher">Öğretmen</option>
+                    <option value="Idare">İdare</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => LoginData.Role)" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" disabled="@IsLoading">
+                @(IsLoading ? "Giriş Yapılıyor..." : "Giriş Yap")
+            </button>
+        </EditForm>
+
+        <div class="auth-footer">
+            Hesabınız yok mu? <a href="/register">Kayıt Olun</a>
+        </div>
+
+        @if (ShowAlert)
+        {
+            <div class="alert @AlertCssClass">
+                @AlertMessage
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private LoginModel LoginData = new();
+    private bool IsLoading = false;
+    private bool ShowAlert = false;
+    private string AlertMessage = "";
+    private string AlertCssClass => IsSuccess ? "alert-success" : "alert-danger";
+    private bool IsSuccess = false;
+    @inject IJSRuntime JSRuntime
+    public class LoginResponse
+    {
+        public string Token { get; set; } = "";
+        public UserDto User { get; set; } = new();
+    }
+
+    public class UserDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = "";
+        public string Role { get; set; } = "";
+    }
+
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            IsLoading = true;
+            ShowAlert = false;
+
+            var loginRequest = new LoginRequest
+            {
+                TcNo = LoginData.TcNo,
+                Password = LoginData.Password,
+                Role = LoginData.Role
+            };
+
+            var response = await Http.PostAsJsonAsync("api/auth/login", loginRequest);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var loginResult = await response.Content.ReadFromJsonAsync<LoginResponse>();
+                if (loginResult != null)
+                {
+                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", loginResult.Token);
+
+                    IsSuccess = true;
+                    AlertMessage = "Giriş başarılı! Yönlendiriliyorsunuz...";
+                    ShowAlert = true;
+
+                    await Task.Delay(1500);
+
+                    if (LoginData.Role == "Student")
+                        Navigation.NavigateTo("/student-notes");
+                    else if (LoginData.Role == "Teacher")
+                        Navigation.NavigateTo("/teacher-add-note");
+                    else if (LoginData.Role == "Idare")
+                        Navigation.NavigateTo("/admin-dashboard");
+                }
+            }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Logger.LogError($"Login error: {response.StatusCode} - {errorContent}");
+
+                try
+                {
+                    var errorObj = System.Text.Json.JsonSerializer.Deserialize<ErrorResponse>(errorContent);
+                    AlertMessage = errorObj?.message ?? $"Giriş hatası: {response.StatusCode}";
+                }
+                catch
+                {
+                    AlertMessage = $"Giriş hatası: {response.StatusCode} - {errorContent}";
+                }
+
+                IsSuccess = false;
+                ShowAlert = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            AlertMessage = $"Bağlantı hatası: {ex.Message}";
+            IsSuccess = false;
+            ShowAlert = true;
+            Logger.LogError(ex, "Login exception");
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "TC Kimlik No gerekli")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "TC Kimlik No 11 haneli olmalı")]
+        public string TcNo { get; set; } = "";
+
+        [Required(ErrorMessage = "Şifre gerekli")]
+        public string Password { get; set; } = "";
+
+        [Required(ErrorMessage = "Rol seçimi gerekli")]
+        public string Role { get; set; } = "";
+    }
+
+    public class LoginRequest
+    {
+        public string TcNo { get; set; } = "";
+        public string Password { get; set; } = "";
+        public string Role { get; set; } = "";
+    }
+
+    public class ErrorResponse
+    {
+        public string message { get; set; } = "";
+    }
+}

@@ -1,0 +1,358 @@
+[
+  {
+    "ContainingType": "EduTrack.API.Controllers.AdminClassesController",
+    "Method": "GetAllClasses",
+    "RelativePath": "api/AdminClasses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.AdminClassesController",
+    "Method": "AssignStudentToClass",
+    "RelativePath": "api/AdminClasses/assign-student-to-class",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EduTrack.API.Controllers.AdminClassesController\u002BAssignStudentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.AdminClassesController",
+    "Method": "RemoveStudentFromClass",
+    "RelativePath": "api/AdminClasses/remove-student-from-class",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EduTrack.API.Controllers.AdminClassesController\u002BAssignStudentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.AdminNotesController",
+    "Method": "GetStudentsWithNotes",
+    "RelativePath": "api/AdminNotes/admin-class-notes/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.AdminStudentsController",
+    "Method": "GetAllStudents",
+    "RelativePath": "api/AdminStudents/all-students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.AdminTeachersController",
+    "Method": "GetAllTeachers",
+    "RelativePath": "api/AdminTeachers/all-teachers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.AdminTeachersController",
+    "Method": "GetTeacherClassesAndLessons",
+    "RelativePath": "api/AdminTeachers/teacher-classes-lessons",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "teacherId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EduTrack.API.Controllers.AuthController\u002BLoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/Auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EduTrack.API.Controllers.AuthController\u002BRegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ClassesController",
+    "Method": "CreateClass",
+    "RelativePath": "api/Classes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EduTrack.Application.DTOs.ClassCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ClassesController",
+    "Method": "GetClasses",
+    "RelativePath": "api/Classes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.ClassLessonsController",
+    "Method": "AssignLessonToClass",
+    "RelativePath": "api/ClassLessons",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EduTrack.Application.DTOs.ClassLessonCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.ClassLessonsController",
+    "Method": "GetLessons",
+    "RelativePath": "api/ClassLessons/lessons",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.NoteController",
+    "Method": "AddNote",
+    "RelativePath": "api/Note/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "note",
+        "Type": "EduTrack.Domain.Note",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.NoteController",
+    "Method": "GetByLesson",
+    "RelativePath": "api/Note/by-lesson/{lessonId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lessonId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.NoteController",
+    "Method": "GetMyNotes",
+    "RelativePath": "api/Note/my",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.NoteController",
+    "Method": "UpdateNote",
+    "RelativePath": "api/Note/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "note",
+        "Type": "EduTrack.Domain.Note",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.SchoolController",
+    "Method": "GetSchools",
+    "RelativePath": "api/School",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.SchoolController",
+    "Method": "AddSchool",
+    "RelativePath": "api/School",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EduTrack.API.Controllers.SchoolCreateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.StudentsController",
+    "Method": "GetMyNotes",
+    "RelativePath": "api/Students/student-notes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.TeachersController",
+    "Method": "GetTeachers",
+    "RelativePath": "api/Teachers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.TeachersController",
+    "Method": "AddNote",
+    "RelativePath": "api/Teachers/add-note",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "EduTrack.API.Controllers.TeachersController\u002BAddNoteRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.TeachersController",
+    "Method": "GetNotesByClass",
+    "RelativePath": "api/Teachers/class-notes/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.TeachersController",
+    "Method": "GetTeacherClasses",
+    "RelativePath": "api/Teachers/classes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.TeachersController",
+    "Method": "GetLessonsInClass",
+    "RelativePath": "api/Teachers/lessons/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduTrack.API.Controllers.TeachersController",
+    "Method": "GetStudentsInClass",
+    "RelativePath": "api/Teachers/students/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
